@@ -5,7 +5,7 @@ class Trim {
         Class pointClass = myObj.getClass();
         Method[] methods = pointClass.getMethods();
         for (Method m : methods) {
-            if (m.getName().equals("getX") || m.getName().equals("getY") || m.getName().equals("getValue")) {
+            if (m.getName().startsWith("get")&& !m.getName().equals("getClass")) {
                 String trimmed = (String) m.invoke(myObj);
                 System.out.println(trimmed.trim());
             }
@@ -48,7 +48,6 @@ class Point {
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
 
         Point point = new Point("   2 0  ", "       4 ", " 10       ");
-
         Trim subTri = new Trim();
         System.out.println(subTri.methTrim(point));
     }
